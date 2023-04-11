@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block nav %}
+ <nav class="navbar" style="color:black;">
+    <div class="max-width">
+     <ul class="menu">
+         <li class="logo">Airline Reservation</li>
+         <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+         <li><a href="{% url 'search' %}" class="menu-btn"><i class="fas fa-search"></i>&nbsp; Search Flights</a></li>
+         <li><a href="{% url 'feedb' %}" class="menu-btn">Feedback</a></li>
+         <li><a href="{% url 'logout' %}" class="menu-btn">Logout</a></li>
+         <li><a href="/profi/{{request.session.id}}" class="menu-btn"><i class="fas fa-user"></i>&nbsp;{{request.session.email}}</a></li>
+     </ul>
+    </div>
+   </nav>
+{% endblock nav %}
+
+{% block content %}
+<div class="center" style="width: 800px;
+    height: 1500px; margin-top: 100px; background-color:rgba(34, 237, 169, 0.663);">
+    {% if messages %}
+        {% for message in messages %}
+        <h3 style="color: black;"> &nbsp;{{message}}<br> <br></h3>
+        {% endfor %}
+        {% endif %} 
+    
+    <table class='tab' border="1">
+        <tr>
+          <th>PNR No.</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Seats</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Payment Option</th>
+        </tr>
+        {% for res in obje %}
+        <tr>
+            <td><a href="/bdet/{{res.rand}}" style="color: blue; background-color:rgb(186, 232, 250)">{{res.rand}}</a></td>
+            <!-- <a href="/books/{{res.id}}" style="background-color:green ;">Book</a> -->
+            <td>{{res.sour}}</td>
+            <td>{{res.dest}}</td>
+            <td>{{res.seats}}</td>
+            <td>{{res.price}}</td>
+            <td>{{res.date}}</td>
+            <td>{{res.pay}}</td>
+        </tr>
+        {% endfor %}
+    </table><br><br>
+    <!-- <h3>{{request.session.fid_id}}</h3><br>
+    <h3>{{request.session.rand}}</h3> -->
+    </div>
+{% endblock content %}
+
+

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block nav %}
+<nav class="navbar" style="color:black;">
+    <div class="max-width">
+     <ul class="menu">
+         <li class="logo">Airline Reservation</li>
+         <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+         <li><a href="{% url 'search' %}" class="menu-btn"><i class="fas fa-search"></i>&nbsp; Search Flights</a></li>
+         
+         <li><a href="{% url 'feedb' %}" class="menu-btn">Feedback</a></li>
+         <li><a href="{% url 'logout' %}" class="menu-btn">Logout</a></li>
+         <li><a href="/profi/{{request.session.id}}" class="menu-btnl"><i class="fas fa-user"></i>&nbsp;{{request.session.email}}</a></li>
+     </ul>
+    </div>
+   </nav>
+{% endblock nav %}
+{% block content %}
+    <div class="center" style="width: 360px;
+    height: 650px; margin-top: 160px;">
+    
+    <h2>Feedback</h2>
+    <form method="POST" style="height: 100%";>
+        {% csrf_token %}
+        <label>Id</label><br>
+        <input type="text" name="eid_id" readonly value="{{request.session.id}}"><br>
+        <label>Email</label><br>
+        <input type="email" name="email" readonly value="{{request.session.email}}"><br>
+        <label>Password</label><br>
+        <input type="password" name="password" value="{{request.session.password}}"><br>
+        <label>Feedback</label><br>
+        <input type="text" name="feedba" required><br>
+        <label>Rating</label><br>
+        <input type="number" name="rating" min="1" max="10" required><br>
+		<input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
+        {% if messages %}
+        {% for message in messages %}
+        <h3 style="color: red;">{{message}}</h3>
+        {% endfor %}
+        {% endif %}
+    </form>
+    </div>
+{% endblock content %}

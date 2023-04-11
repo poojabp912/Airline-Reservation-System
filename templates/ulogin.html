@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'sign' %}" class="menu-btn">Signup</a></li>
+                <li><a href="{% url 'login' %}" class="menu-btn">Login</a></li>
+                <li><a href="{% url 'adminl' %}" class="menu-btn">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+    <div class="center" style = "width: 360px; height: 650px; margin-top: 160px;">
+    <h2>Login</h2>
+    <form class="formf" method="POST" style="height: 100%";>
+        {% csrf_token %}
+        <label>Email</label>
+        <br>
+        <input type="email" name="email">
+        
+        <label>Password</label><br>
+        <input type="password" name="password">
+		<input type="submit" name="submit" value="Submit"><br>
+        {% if messages %}
+        {% for message in messages %}
+        <h3 style="color: red; padding-left: 30px;">{{message}}</h3>
+        {% endfor %}
+        {% endif %}
+        
+    <i style="font-size: 18px; padding-left: 26px;"> Not a Member before <a href="{% url 'sign' %}" style="color: blue;">SignUp</a> here<i>
+        
+    </form>
+
+    </div>
+{% endblock content %}

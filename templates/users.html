@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'lists' %}" class="menu-btn">Flights</a></li>
+                <li><a href="{% url 'user' %}" class="menu-btn">Users</a></li>
+                <li><a href="{% url 'feedbv' %}" class="menu-btn">View Feedback</a></li>
+                <li><a href="{% url 'bookv' %}" class="menu-btn">View Bookings</a></li>
+                <li><a href="{% url 'logout' %}" class="menu-btn">Admin Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+<div class="center" style = "width: 900px;
+    height: 100%; margin-top: 160px;">
+    <br>
+    <h3>Total Number of Users Registered to website are : {{dataa | length }}</h3>
+    <h2>Users</h2><br>
+    <table class='tab' border="1">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>DOB</th>
+          <th>Phone Number</th>
+          <th>Action</th>
+        </tr>
+        {% for res in dataa %}
+        <tr>
+            <td>{{res.name}}</td>
+            <td>{{res.email}}</td>
+            <td>{{res.gender}}</td>
+            <td>{{res.date}}</td>
+            <td>{{res.phno}}</td>
+            <td>
+                <a href="/delet/{{res.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    {% endblock content %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'sign' %}" class="menu-btn">Signup</a></li>
+                <li><a href="{% url 'login' %}" class="menu-btn">Login</a></li>
+                <li><a href="{% url 'adminl' %}" class="menu-btn">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+    <div class="center" style="width: 360px;
+    height: 650px; margin-top: 100px;">
+    <h2>Signup</h2>
+    <form method="POST" style="height: 100%";>
+        {% csrf_token %}
+        <label>Name</label><br>
+        <input type="text" name="name" required><br>
+        <label>Password</label><br>
+        <input type="password" name="password"required><br>
+        <label>Email</label><br>
+        <input type="email" name="email"required><br>
+        <label>Gender</label><br>
+        <label for="101">
+        <input type="radio" name="gender" value="Male" id="101">Male</label>
+        <label for="102">
+        <input type="radio" name="gender" value="Female" id="102">Female</label>
+        <label for="103">
+        <input type="radio" name="gender" value="Other" id="103">Other
+        </label><br>
+        <label>DOB</label><br>
+        <input type="date" name="date" required><br>
+        <label>Phone Number</label><br>
+        <input type="text" name="phno" pattern="[0-9]{10}" placeholder="Enter your 10 digit phone no." required>
+
+		<input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
+        {% if messages %}
+        {% for message in messages %}
+        <h3 style="color: red;">{{message}}</h3>
+        {% endfor %}
+        {% endif %} 
+        <i style="font-size: 18px; padding-left: 12px;"> If you are already a Member <a href="{% url 'login' %}" style="color: blue;">login</a> here<i>
+        
+    </form>
+    </div>
+{% endblock content %}

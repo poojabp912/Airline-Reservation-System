@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'search' %}" class="menu-btn"><i class="fas fa-search"></i>&nbsp; Search Flights</a></li>
+                <li><a href="{% url 'feedb' %}" class="menu-btn">Feedback</a></li>
+                <li><a href="{% url 'logout' %}" class="menu-btn">Logout</a></li>
+                <li><a href="/profi/{{request.session.id}}" class="menu-btn"><i class="fas fa-user"></i>&nbsp;{{request.session.email}}</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+{% if request.session.email %}
+ <div class="center" style = "width: 600px;
+    height: 1500px; margin-top: 100px;">
+    {% if messages %}
+    {% for message in messages %}
+    <h3 style="color: red; padding-left: 30px;">{{message}}</h3>
+    {% endfor %}
+    {% endif %}
+    <h2>Search Flights</h2><br>
+    <hr/>
+    <form class="formf" method="POST" style="width:fit-content; overflow:hidden " >
+    {% csrf_token %}
+    From:<input type="text" name="sour">
+    To:<input type="text" name="dest">
+    <input type="submit" name="submit" value="Search">
+    <hr><br>
+    <table class='tab' border="1">
+        <tr>
+          <th>Name</th>
+          <th>Id</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+        {% for res in data %}
+        <tr>
+            <td>{{res.fname}}</td>
+            <td>{{res.id}}</td>
+            <td>{{res.sour}}</td>
+            <td>{{res.dest}}</td>
+            <td>{{res.price}}</td>
+            <td>
+                <a href="/books/{{res.id}}" style="background-color:green ;">Book</a>
+                <!-- <a href="/delete/{{res.id}}">Delete</a> -->
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>
+    {% else %}
+    <p style="color:rgb(20, 18, 18) ;">New User <a href="{% url 'sign' %}" style="color:rgb(109, 202, 249) ;">SignIn</a> &nbsp; here</p>
+    
+ {% endif %}
+ </div>
+{% endblock content%}

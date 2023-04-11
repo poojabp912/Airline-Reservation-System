@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'lists' %}" class="menu-btn">Flights</a></li>
+                <li><a href="{% url 'user' %}" class="menu-btn">Users</a></li>
+                <li><a href="{% url 'feedbv' %}" class="menu-btn">View Feedback</a></li>
+                <li><a href="{% url 'bookv' %}" class="menu-btn">View Bookings</a></li>
+                <li><a href="{% url 'logout' %}" class="menu-btn">Admin Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+    <div class="center" style = "width: 400px;
+    height: 600px;  margin-top: 100px;">
+    <h2>Update Flight</h2> <br>
+    <form class="formf" method="POST" action="/update/{{data.id}}/">
+        {% csrf_token %}
+        <label>Id</label>
+        <br>
+        <input type="text" name="id" value="{{data.id}}" readonly>
+        <label>Name</label>
+        <br>
+        <input type="text" name="fname" value="{{data.fname}}" required>
+        
+        <label>Source</label>
+        <br>
+        <input type="text" name="sour" value="{{data.sour}}" required>
+        
+        <label>Destination</label>
+        <br>
+        <input type="text" name="dest" value="{{data.dest}}" required>
+
+        <label>Price</label>
+        <br>
+        <input type="text" name="price" value="{{data.price}}" required>
+        <label>No. of Seats Available</label>
+        <br>
+        <input type="number" name="seat" value="{{data.seat}}" required>
+
+        <input type="submit" name="submit" value="Update" class="btn brand z-depth-0">
+    </form>
+    </div>
+{% endblock content %}

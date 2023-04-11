@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'lists' %}" class="menu-btn">Flights</a></li>
+                <li><a href="{% url 'user' %}" class="menu-btn">Users</a></li>
+                <li><a href="{% url 'feedbv' %}" class="menu-btn">View Feedback</a></li>
+                <li><a href="{% url 'bookv' %}" class="menu-btn">View Bookings</a></li>
+                <li><a href="{% url 'logout' %}" class="menu-btn">Admin Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+    <div class="center" style = "width: 400px;
+    height: 600px;  margin-top: 160px;">
+    <h2>Add Flight</h2> <br>
+    <hr/>
+    <form class="formf" method="POST">
+        {% csrf_token %}
+        <label>Name</label>
+        <br>
+        <input type="text" name="fname" required>
+        
+        <label>From City</label>
+        <br>
+        <input type="text" name="sour" required>
+        
+        <label>Destination</label>
+        <br>
+        <input type="text" name="dest" required>
+        <label>Price in Rs.</label>
+        <br>
+        <input type="text" name="price" required>
+
+        <label>No. of Seats Available</label>
+        <br>
+        <input type="number" name="seat" required>
+        <input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
+
+    </form>
+    </div>
+{% endblock content %}
+

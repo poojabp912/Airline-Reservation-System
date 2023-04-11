@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'lists' %}" class="menu-btn">Flights</a></li>
+                <li><a href="{% url 'user' %}" class="menu-btn">Users</a></li>
+                <li><a href="{% url 'feedbv' %}" class="menu-btn">View Feedback</a></li>
+                <li><a href="{% url 'bookv' %}" class="menu-btn">View Bookings</a></li>
+                <li><a href="{% url 'logout' %}" class="menu-btn">Admin Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+    <div class="center" style = "width: 800px;
+    height: 1200px; margin-top: 100px;">
+    <br>
+    <h3>Total Number of Flights are : {{data | length }}</h3>
+    <h2>Flight List</h2><br>
+    <table class='tab' border="1">
+        <tr>
+          <th>Name</th>
+          <th>Id</th>
+          <th>from City</th>
+          <th>Destination</th>
+          <th>Price in Rs.</th>
+          <th>No. of Seats</th>
+          <th>Action</th>
+        </tr>
+        {% for res in data %}
+        <tr>
+            <td>{{res.fname}}</td>
+            <td>{{res.id}}</td>
+            <td>{{res.sour}}</td>
+            <td>{{res.dest}}</td>
+            <td>{{res.price}}</td>
+            <td>{{res.seat}}</td>
+            <td>
+                <a href="/update/{{res.id}}" name="submit" style="background-color: green;">Edit</a>
+                <a href="/delete/{{res.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table><br><br>
+    <a href="{% url 'addf' %}" name="submit" style="background-color: green;
+    color: #fff;
+    padding: 12px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;">Add Flights</a>
+    </div>
+{% endblock content %}

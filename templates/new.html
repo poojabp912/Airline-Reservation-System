@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block nav %}
+    <nav class="navbar" style="color:black;">
+        <div class="max-width">
+            <ul class="menu">
+                <li class="logo">Airline Reservation</li>
+                <li><a href="{% url 'home' %}" class="menu-btn"><i class="fas fa-home"></i>&nbsp; Home</a></li>
+                <li><a href="{% url 'lists' %}" class="menu-btn">Flights</a></li>
+                <li><a href="{% url 'user' %}" class="menu-btn">Users</a></li>
+                <li><a href="{% url 'feedbv'%}" class="menu-btn">View Feedback</a></li>
+                <li><a href="{% url 'bookv' %}" class="menu-btn">View Bookings</a></li>
+                <li><a href="{% url 'logout' %}" class="menu-btn">Admin Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock nav %}
+{% block content %}
+<div class="center" style = "width: 600px;
+    height: 100%; margin-top: 160px;">
+    <h2>Feedback</h2><br>
+    <table class='tab' border="1">
+        <tr>
+          <th>Sum</th>
+          <th>val</th>
+        </tr>
+        <!-- {% for res in dat %} -->
+        <tr>
+            <td>{{dat.seats__sum}}</td>
+            <td>{{request.session.fid_id}}</td>
+        </tr>
+        <!-- {% endfor %} -->
+    </table>
+    {%if ob.seat < dat.seats__sum %}
+    <h3>Not Available</h3>
+    {% else %}
+    <h3>Book</h3> 
+    {% endif %} 
+    </div>
+    {% endblock content %}

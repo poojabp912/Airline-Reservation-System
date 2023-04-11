@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+<body>
+    <img src="{% static '/myimage.jpg' %}" alt="">
+
+    {% block nav %}
+    {% endblock nav %}
+    
+    {% block content %}
+    {% endblock content %}
+    <footer class="foot">
+        <i style="font-size: 18px;">Airline Reservation System</i>
+    </footer>
+</body>
+</html>
