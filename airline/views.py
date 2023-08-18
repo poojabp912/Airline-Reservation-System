@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 import random
 
-# jkdjwejdn
 def home(request):
     return render(request,'index.html')
 
