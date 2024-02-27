@@ -12,7 +12,7 @@ Django,
 SQL
 
 # Requirements
-Xampp
+XAMPP
 
 # Snapshots
 ![Screenshot (41)](https://github.com/poojabp912/Airline-Reservation-System/assets/130239242/78b4d659-aaf5-4c15-a36e-2090bd8674d0)
