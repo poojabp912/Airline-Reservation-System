@@ -1,4 +1,4 @@
-# Django-Airline-Reservation-System
+# Django Airline-Reservation-System
 The main aim of the project was to develop a website which would facilitate the reservation of
 online air tickets. Airline Reservation System contains the details about flight schedules and its fare
 tariffs, passenger reservations and ticket records. It saves time as it allows online procedure as
