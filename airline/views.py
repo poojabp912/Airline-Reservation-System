@@ -7,7 +7,7 @@ from django.db.models import Sum
 import random
 
 def home(request):
-    return render(request,'index.html')
+    return render(request,'home.html')
 
 def adminl(request):
   if request.method=='POST':  
@@ -206,7 +206,7 @@ def upda(request, id):
             saverecord.id = request.POST.get('id')
             saverecord.phno = request.POST.get('phno')
             saverecord.save()
-            return render(request,'index.html')
+            return render(request,'home.html')
          except:
             messages.success(request,'Invalid Email And Password!.')
     else:
@@ -232,8 +232,8 @@ def logout(request):
     try:
         del request.session['email']
     except :
-        return render(request,'index.html')
-    return render(request,'index.html')
+        return render(request,'home.html')
+    return render(request,'home.html')
     
 
     
